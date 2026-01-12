@@ -1,0 +1,454 @@
+:root {
+  --header-width: 800px; /* szerokość headera */
+  --header-height: 40px; /* wysokość headera */
+  --global-font-size: 25px;  /* czcionka w kalendarzu */
+  --topnav-height: 40px;  /* wysokość paska nawigacji */
+}
+
+html,body {
+	
+	background:#eee;
+	height:100%;
+	margin:0;
+}
+
+
+.calendar{
+	
+		margin-top:100px;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		flex-direction:column; /* elementy ustawiają się pod sobą */
+		font-family: sans-serif;
+
+}
+
+
+.calendar-header{
+		min-width:var(--header-width);
+		height:var(--header-height);
+		padding:5px;
+		display:grid;
+		grid-template-columns: var(--header-height) 1fr var(--header-height);
+}
+
+.calendar-header .date-text{
+    
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #000;
+	font-weight:bold;
+	font-size:var(--global-font-size);
+}
+
+.calendar-header .btn-prev{
+	cursor: pointer;
+    background-size: var(--header-height);
+    background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' class='bi bi-chevron-left' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'%3E%3C/path%3E%3C/svg%3E");
+
+}
+
+.calendar-header .btn-prev:hover {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' class='bi bi-chevron-left' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'%3E%3C/path%3E%3C/svg%3E");
+    background-color:#D1EBFD;
+}
+
+.calendar-header .btn-next{
+	cursor: pointer;
+	background-size: var(--header-height);
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' class='bi bi-chevron-right' viewBox='0 0 16 16'%3E  %3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.calendar-header .btn-next:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' class='bi bi-chevron-right' viewBox='0 0 16 16'%3E  %3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'%3E%3C/path%3E%3C/svg%3E");
+    background-color:#D1EBFD;
+}
+
+
+/* tabela z kalendarzem */
+
+.calendar .calendar-table-container {
+    position: relative;
+    padding-top:10px;
+	min-width:var(--header-width);
+}
+
+.calendar .calendar-table {
+	
+    font-size:var(--global-font-size);
+	color: #666;
+	width:100%;
+}
+
+.calendar .calendar-table-days-names {
+
+    color: #000;
+}
+
+.calendar .calendar-table td {
+    text-align: center;
+    width:14.2857%;
+	height:50px;
+	background: #fafafa;
+}
+
+.calendar .calendar-table td.day:hover {
+    background: #D1EBFD;
+    cursor: pointer
+}
+
+.calendar .calendar-table td.important-day {
+    background-color: #F15C5C;
+	opacity:0.7;
+    color:#fff;
+}
+
+.calendar .calendar-table td.current-day {
+    background-color: #F15C5C;
+    color:#fff;
+}
+
+
+/*pasek nawigacji */
+
+.topnav{
+	
+	background: #333;
+	height:40px;
+	font-family: sans-serif;
+	display:grid;
+	grid-template-columns: 1fr 50px 50px;
+	
+}
+
+.topnav .topnav-text{
+	
+	padding:10px;
+	color:white;
+	font-weight:bold;
+		
+}
+
+.topnav .topnav-login{
+	
+
+	background-image: url("data:image/svg+xml,%3csvg width='24' height='24' fill='white' viewBox='0 0 24 24' transform='' xmlns='http://www.w3.org/2000/svg'%3e%3c!--Boxicons v3.0 https://boxicons.com %7c License https://docs.boxicons.com/free--%3e%3cpath d='M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5'%3e%3c/path%3e%3c/svg%3e");
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.topnav .topnav-login:hover{
+	background-image: url("data:image/svg+xml,%3csvg width='24' height='24' fill='white' viewBox='0 0 24 24' transform='' xmlns='http://www.w3.org/2000/svg'%3e%3c!--Boxicons v3.0 https://boxicons.com %7c License https://docs.boxicons.com/free--%3e%3cpath d='M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5'%3e%3c/path%3e%3c/svg%3e");
+	background-color:#C7C7C7;
+}
+
+.topnav .topnav-settings{
+	
+
+	background-image: url("data:image/svg+xml,%3csvg width='24' height='24' fill='white' viewBox='0 0 24 24' transform='' xmlns='http://www.w3.org/2000/svg'%3e%3c!--Boxicons v3.0 https://boxicons.com %7c License https://docs.boxicons.com/free--%3e%3cpath d='M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4m0 6c-1.08 0-2-.92-2-2s.92-2 2-2 2 .92 2 2-.92 2-2 2'%3e%3c/path%3e%3cpath d='m20.42 13.4-.51-.29c.05-.37.08-.74.08-1.11s-.03-.74-.08-1.11l.51-.29c.96-.55 1.28-1.78.73-2.73l-1-1.73a2.006 2.006 0 0 0-2.73-.73l-.53.31c-.58-.46-1.22-.83-1.9-1.11v-.6c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v.6c-.67.28-1.31.66-1.9 1.11l-.53-.31c-.96-.55-2.18-.22-2.73.73l-1 1.73c-.55.96-.22 2.18.73 2.73l.51.29c-.05.37-.08.74-.08 1.11s.03.74.08 1.11l-.51.29c-.96.55-1.28 1.78-.73 2.73l1 1.73c.55.95 1.77 1.28 2.73.73l.53-.31c.58.46 1.22.83 1.9 1.11v.6c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2v-.6a8.7 8.7 0 0 0 1.9-1.11l.53.31c.95.55 2.18.22 2.73-.73l1-1.73c.55-.96.22-2.18-.73-2.73m-2.59-2.78c.11.45.17.92.17 1.38s-.06.92-.17 1.38a1 1 0 0 0 .47 1.11l1.12.65-1 1.73-1.14-.66c-.38-.22-.87-.16-1.19.14-.68.65-1.51 1.13-2.38 1.4-.42.13-.71.52-.71.96v1.3h-2v-1.3c0-.44-.29-.83-.71-.96-.88-.27-1.7-.75-2.38-1.4a1.01 1.01 0 0 0-1.19-.15l-1.14.66-1-1.73 1.12-.65c.39-.22.58-.68.47-1.11-.11-.45-.17-.92-.17-1.38s.06-.93.17-1.38A1 1 0 0 0 5.7 9.5l-1.12-.65 1-1.73 1.14.66c.38.22.87.16 1.19-.14.68-.65 1.51-1.13 2.38-1.4.42-.13.71-.52.71-.96v-1.3h2v1.3c0 .44.29.83.71.96.88.27 1.7.75 2.38 1.4.32.31.81.36 1.19.14l1.14-.66 1 1.73-1.12.65c-.39.22-.58.68-.47 1.11Z'%3e%3c/path%3e%3c/svg%3e");
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.topnav .topnav-settings:hover{
+	background-image: url("data:image/svg+xml,%3csvg width='24' height='24' fill='white' viewBox='0 0 24 24' transform='' xmlns='http://www.w3.org/2000/svg'%3e%3c!--Boxicons v3.0 https://boxicons.com %7c License https://docs.boxicons.com/free--%3e%3cpath d='M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4m0 6c-1.08 0-2-.92-2-2s.92-2 2-2 2 .92 2 2-.92 2-2 2'%3e%3c/path%3e%3cpath d='m20.42 13.4-.51-.29c.05-.37.08-.74.08-1.11s-.03-.74-.08-1.11l.51-.29c.96-.55 1.28-1.78.73-2.73l-1-1.73a2.006 2.006 0 0 0-2.73-.73l-.53.31c-.58-.46-1.22-.83-1.9-1.11v-.6c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v.6c-.67.28-1.31.66-1.9 1.11l-.53-.31c-.96-.55-2.18-.22-2.73.73l-1 1.73c-.55.96-.22 2.18.73 2.73l.51.29c-.05.37-.08.74-.08 1.11s.03.74.08 1.11l-.51.29c-.96.55-1.28 1.78-.73 2.73l1 1.73c.55.95 1.77 1.28 2.73.73l.53-.31c.58.46 1.22.83 1.9 1.11v.6c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2v-.6a8.7 8.7 0 0 0 1.9-1.11l.53.31c.95.55 2.18.22 2.73-.73l1-1.73c.55-.96.22-2.18-.73-2.73m-2.59-2.78c.11.45.17.92.17 1.38s-.06.92-.17 1.38a1 1 0 0 0 .47 1.11l1.12.65-1 1.73-1.14-.66c-.38-.22-.87-.16-1.19.14-.68.65-1.51 1.13-2.38 1.4-.42.13-.71.52-.71.96v1.3h-2v-1.3c0-.44-.29-.83-.71-.96-.88-.27-1.7-.75-2.38-1.4a1.01 1.01 0 0 0-1.19-.15l-1.14.66-1-1.73 1.12-.65c.39-.22.58-.68.47-1.11-.11-.45-.17-.92-.17-1.38s.06-.93.17-1.38A1 1 0 0 0 5.7 9.5l-1.12-.65 1-1.73 1.14.66c.38.22.87.16 1.19-.14.68-.65 1.51-1.13 2.38-1.4.42-.13.71-.52.71-.96v-1.3h2v1.3c0 .44.29.83.71.96.88.27 1.7.75 2.38 1.4.32.31.81.36 1.19.14l1.14-.66 1 1.73-1.12.65c-.39.22-.58.68-.47 1.11Z'%3e%3c/path%3e%3c/svg%3e");
+	background-color:#C7C7C7;
+}
+
+/* lightbox - formularz logowania */
+
+.lightbox{
+	position:fixed; 
+	top:0;
+	left:0;
+	width:100%;
+	height:100%; /*pozycja zawsze w rogu ekranu, zajmuje 100% ekranu */
+	z-index:-1; 
+	background:rgba(0, 0, 0, 0.8); /*przykrywa inne elementy, ma ciemne przezroczyste tło*/
+	
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	
+	backdrop-filter: blur(1px); /* blurruje elementy za tym divem (na osi Z) */
+	
+	padding: 20px; /*to może coś daje jak ekran jest mały - wymusza odstęp krawędzi od elementów */ 
+	box-sizing: border-box;
+	font-family: Poppins, sans-serif; 
+	opacity:0;
+	cursor: pointer;
+}
+
+.lightbox-login-container {
+	
+    position: relative;
+    background: #FFF;
+    min-height: 400px;
+    min-width: 400px;
+	overflow: hidden; /* na wypadek małego okna, przycina obraz */
+	
+	display:flex;
+    align-items: center;
+	flex-direction:column;
+	border-radius: 3px;
+	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0.4);
+	cursor: auto;
+	
+	 
+
+}
+
+.lightbox-login-container-form {
+	
+	position:absolute;
+	top:50px;
+	width: 100%;
+
+}
+
+.lightbox-login-container-form form {
+	
+	display:flex;
+    align-items: center;
+	flex-direction:column;
+	width: 100%;
+
+}
+
+.lightbox-login-container-form input[type=text], .lightbox-login-container-form input[type=password] {
+  
+  width: 90%;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  display: inline-block;
+  box-sizing: border-box;
+
+}
+
+.lightbox-login-container-form button {
+  background-color: #828282;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+}
+
+.lightbox-login-container-form  button:hover {
+  opacity: 0.8;
+}
+
+.lightbox-login-container-footer{
+	position:absolute;
+	bottom:0px;
+	height:100px;
+	width:100%;
+	background-color:#f1f1f1;
+	
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	
+}
+
+.lightbox-logout-container{
+	
+	position: relative;
+    background: #FFF;
+    min-height: 400px;
+    min-width: 400px;
+	overflow: hidden; /* na wypadek małego okna, przycina obraz */
+	border-radius: 3px;
+	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0.4);
+	cursor: auto;
+	
+	display:flex;
+    align-items: center;
+	justify-content:center;
+	flex-direction:column;
+	
+	font-weight:bold;
+	font-size:15px;
+
+}
+
+.lightbox-logout-container button {
+  background-color: #828282;
+  color: white;
+  padding: 14px 20px;
+  margin-top:20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.lightbox-logout-container button:hover {
+  opacity:0.8;
+}
+
+
+.lightbox-logout-loging-success{
+		position:absolute;
+		top:0;
+		width:100%;
+		height:100%;
+		background:white;
+		
+		display:flex;
+		align-items: center;
+		justify-content:center;
+
+}
+
+/* lightbox - formularz rejestracji */
+
+
+.lightbox-register-container {
+	
+    position: relative;
+    background: #FFF;
+    min-height: 400px;
+    min-width: 400px;
+	overflow: hidden; /* na wypadek małego okna, przycina obraz */
+	border-radius: 3px;
+	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0.4);
+	cursor: auto;
+
+	padding: 20px;
+	display:flex;
+    align-items: center;
+	flex-direction:column;
+
+}
+
+.lightbox-register-container-form {
+	
+	margin-bottom:75px;
+}
+
+.lightbox-register-container-form hr{
+	
+	border: 1px solid #f1f1f1;
+	margin-bottom: 25px;
+	width: 100%;
+
+}
+
+.lightbox-register-container-form input[type=text], input[type=password] {
+  
+	width: 100%;
+	padding: 10px 20px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	display: inline-block;
+	border: none;
+	background: #f1f1f1;
+	box-sizing: border-box;
+}
+
+.lightbox-register-container-form button {
+  background-color: #828282;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+
+}
+
+.lightbox-register-container-form  button:hover {
+  opacity: 0.8;
+}
+
+.lightbox-register-container-footer{
+	position:absolute;
+	bottom:0px;
+	height:50px;
+	width:100%;
+	background-color:#f1f1f1;
+	padding:10px;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	
+}
+
+.lightbox-register-success{
+		position:absolute;
+		top:0;
+		width:100%;
+		height:100%;
+		background:white;
+		z-index:101;
+		display:flex;
+		align-items: center;
+		justify-content:center;
+
+}
+
+/* kalendarz lightbox */
+
+
+.lightbox-calendar-container{
+	
+	position: relative;
+    background: #FFF;
+    min-height: 400px;
+    min-width: 400px;
+	overflow: hidden; /* na wypadek małego okna, przycina obraz */
+	border-radius: 3px;
+	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0.4);
+	cursor: auto;
+
+	padding: 20px;
+	display:flex;
+    align-items: center;
+	flex-direction:column;	
+	
+}
+
+.lightbox-calendar-container form{
+
+	display:flex;
+	align-items: center;
+	flex-direction:column;	
+	
+}
+
+.lightbox-calendar-container form p{
+	font-weight:bold;
+}
+
+.lightbox-calendar-container form p{
+	font-weight:bold;
+}
+
+.lightbox-calendar-container form textarea{
+	border:1px solid black;
+	
+}
+
+.lightbox-calendar-container form input{
+  background-color: #828282;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+	
+}
+
+.lightbox-calendar-container form input:hover{
+  opacity:0.8;
+	
+}
+
