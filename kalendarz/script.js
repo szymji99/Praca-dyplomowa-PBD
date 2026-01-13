@@ -70,7 +70,7 @@ class Calendar{
         if(firstDay===0){ firstDay = 7;}
 
         let cellNumber = daysInMonth + firstDay - 1;
-
+		//tworzenie tabeli dni i ustawienie odpowiednich klas
         for (let i=0;i<cellNumber;i++){
 
             if(i%7===0){
@@ -102,6 +102,70 @@ class Calendar{
                 tr.appendChild(td);
             }
         }
+		//podpięcie zdarzeń do dni
+		const calendarDays = document.querySelectorAll(".day");
+		calendarDays.forEach( function(el) {
+			el.addEventListener( "click", function (e){
+			
+				const lightbox = document.querySelector(".lightbox.calendar-day");
+				lightbox.style.opacity = 1;
+				lightbox.style.zIndex = "100";
+				
+				const Months = {
+					"styczeń":1,
+					"luty":2,
+					"marzec":3,
+					"kwiecień":4,
+					"maj":5,
+					"czerwiec":6,
+					"lipiec":7,
+					"sierpień":8,
+					"wrzesień":9,
+					"październik":10,
+					"listopad":11,
+					"grudzień":12
+				};
+				
+				const dateDayInput = lightbox.querySelector("#NoteDay");
+				const dateMonthInput = lightbox.querySelector("#NoteMonth");
+				const dateYearInput = lightbox.querySelector("#NoteYear");
+				
+				
+				let dateYear = String(document.querySelector(".date-text").innerText.split(" ")[1]);
+				let dateMonth = String(Months[document.querySelector(".date-text").innerText.split(" ")[0]]);
+				let dateDay = String(this.innerText);
+				
+				dateDayInput.value = dateDay;
+				dateMonthInput.value = dateMonth;
+				dateYearInput.value = dateYear;
+				
+				const calendarNoteInfoDivs = document.querySelectorAll(".calendarNoteInfo");
+				const lightBoxTextArea = lightbox.querySelector("#day_info");
+				let isEmptyTextBox = true;
+				
+				calendarNoteInfoDivs.forEach( function(div){
+					
+					if( div.dataset.noteday === dateDay && div.dataset.notemonth === dateMonth && div.dataset.noteyear === dateYear){
+						lightBoxTextArea.innerText = div.dataset.notetext;
+						isEmptyTextBox = false;
+					}
+					
+				});
+				
+				if(isEmptyTextBox){
+					lightBoxTextArea.innerText = "";
+				}
+				
+				dateMonth = dateMonth.padStart(2,"0");
+				dateDay = dateDay.padStart(2,"0");
+				const lightboxText = lightbox.querySelector(".day_info_date");
+				lightboxText.innerText = dateDay + "." + dateMonth + "." + dateYear;
+			
+			});
+		
+	});
+		
+		
     }
 
 
